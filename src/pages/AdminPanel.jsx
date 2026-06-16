@@ -401,6 +401,7 @@ const AdminPanel = () => {
                     <label style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>Initial Status</label>
                     <select value={busStatus} onChange={(e) => setBusStatus(e.target.value)}>
                       {/* <option value="Inactive">Inactive</option> */}
+                      <option value="Inactive">Inactive</option>
                       <option value="Active">Active</option>
                       <option value="Maintenance">Maintenance</option>
                     </select>

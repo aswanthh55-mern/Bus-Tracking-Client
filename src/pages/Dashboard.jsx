@@ -501,7 +501,7 @@ const Dashboard = () => {
             }}>
               <BusIcon size={32} color="var(--color-primary)" />
               <div style={{ fontSize: '0.85rem' }}>
-                Select a bus marker on the map or select a route filter above to view live stop checklists and ETA telemetry.
+                Select a bus marker on the map or select a route filter above to view live stops and details
               </div>
             </div>
           )}
@@ -623,7 +623,7 @@ const Dashboard = () => {
           <div style={{ display: 'flex', justifyItems: 'center', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '6px' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span className="status-dot active" style={{ width: '6px', height: '6px' }}></span>
-              SYSTEM TELEMETRY CONSOLE
+              SYSTEM CONSOLE
             </span>
             <span style={{ fontSize: '0.65rem', color: 'var(--color-text-dim)' }}>showing last events</span>
           </div>

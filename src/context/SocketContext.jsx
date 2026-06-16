@@ -12,7 +12,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     // Determine socket connection URL. Since client is hosted at port 5173 and proxied to 5000,
     // socket connection must go directly to backend port 5000 in dev.
-    const socketUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+    const socketUrl = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin);
     
     console.log(`Connecting to WebSocket server at: ${socketUrl}`);
     const newSocket = io(socketUrl, {
