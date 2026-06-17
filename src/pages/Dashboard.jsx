@@ -198,7 +198,7 @@ const Dashboard = () => {
                 onChange={handleCityChange}
                 style={{ width: '100%', fontSize: '0.85rem' }}
               >
-                {cities.map((city) => (
+                {Array.isArray(cities) && cities.map((city) => (
                   <option key={city._id} value={city._id}>{city.name} ({city.country})</option>
                 ))}
               </select>
@@ -213,7 +213,7 @@ const Dashboard = () => {
                 style={{ width: '100%', fontSize: '0.85rem' }}
               >
                 <option value="">All Routes</option>
-                {routes.map((route) => (
+                {Array.isArray(routes) && routes.map((route) => (
                   <option key={route._id} value={route._id}>{route.name}</option>
                 ))}
               </select>
@@ -409,7 +409,7 @@ const Dashboard = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-text-muted)', letterSpacing: '0.05em', marginBottom: '4px' }}>ROUTE PROGRESS & ETA</div>
                 
-                {selectedRoute && selectedRoute.stops ? (
+                {selectedRoute && Array.isArray(selectedRoute.stops) ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', position: 'relative', paddingLeft: '8px' }}>
                     {/* Path line background */}
                     <div style={{

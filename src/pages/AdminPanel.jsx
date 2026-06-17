@@ -380,7 +380,7 @@ const AdminPanel = () => {
                   <label style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>Assigned Route</label>
                   <select value={busRoute} onChange={(e) => setBusRoute(e.target.value)}>
                     <option value="">Standby (No Route)</option>
-                    {routes.map(r => (
+                    {Array.isArray(routes) && routes.map(r => (
                       <option key={r._id} value={r._id}>{r.name} ({r.city?.name})</option>
                     ))}
                   </select>
@@ -390,7 +390,7 @@ const AdminPanel = () => {
                   <label style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>Assigned Driver</label>
                   <select value={busDriver} onChange={(e) => setBusDriver(e.target.value)}>
                     <option value="">Standby (No Driver)</option>
-                    {drivers.map(d => (
+                    {Array.isArray(drivers) && drivers.map(d => (
                       <option key={d._id} value={d._id}>{d.name} ({d.status})</option>
                     ))}
                   </select>
@@ -448,7 +448,7 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {buses.map(bus => (
+                    {Array.isArray(buses) && buses.map(bus => (
                       <tr key={bus._id}>
                         <td style={{ fontWeight: 700, color: '#fff' }}>{bus.busNumber}</td>
                         <td>{bus.model || 'Standard'} ({bus.capacity} seats)</td>
@@ -509,7 +509,7 @@ const AdminPanel = () => {
                     <label style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>Select City Node</label>
                     <select value={routeCity} onChange={(e) => setRouteCity(e.target.value)} required>
                       <option value="">Select City</option>
-                      {cities.map(c => (
+                      {Array.isArray(cities) && cities.map(c => (
                         <option key={c._id} value={c._id}>{c.name}</option>
                       ))}
                     </select>
@@ -631,7 +631,7 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {routes.map(route => (
+                    {Array.isArray(routes) && routes.map(route => (
                       <tr key={route._id}>
                         <td style={{ fontWeight: 700, color: '#fff' }}>{route.name}</td>
                         <td>{route.city ? route.city.name : 'Unknown'}</td>
@@ -736,7 +736,7 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {drivers.map(driver => (
+                    {Array.isArray(drivers) && drivers.map(driver => (
                       <tr key={driver._id}>
                         <td style={{ fontWeight: 700, color: '#fff' }}>{driver.name}</td>
                         <td>{driver.licenseNumber}</td>
@@ -841,7 +841,7 @@ const AdminPanel = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {cities.map(city => (
+                    {Array.isArray(cities) && cities.map(city => (
                       <tr key={city._id}>
                         <td style={{ fontWeight: 700, color: '#fff' }}>{city.name}</td>
                         <td>{city.country}</td>

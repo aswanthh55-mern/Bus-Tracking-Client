@@ -27,9 +27,10 @@ const Buses = () => {
 
   // Map database buses with real-time updates from socket
   const getMergedBuses = () => {
+    if (!Array.isArray(buses)) return [];
     return buses.map((dbBus) => {
       // Find matching live bus in socket feed
-      const liveBus = realtimeBuses.find((b) => b.busId === dbBus._id);
+      const liveBus = Array.isArray(realtimeBuses) ? realtimeBuses.find((b) => b.busId === dbBus._id) : null;
       if (liveBus) {
         return {
           ...dbBus,
@@ -46,7 +47,7 @@ const Buses = () => {
   const mergedBuses = getMergedBuses();
 
   // Filtering
-  const filteredBuses = mergedBuses.filter((bus) => {
+  const filteredBuses = Array.isArray(mergedBuses) ? mergedBuses.filter((bus) => {
     const matchesSearch =
       bus.busNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (bus.driver && bus.driver.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -56,7 +57,7 @@ const Buses = () => {
     const matchesCrowd = crowdFilter === 'all' || bus.crowdLevel === crowdFilter;
 
     return matchesSearch && matchesStatus && matchesCrowd;
-  });
+  }) : [];
 
   const getCrowdBadgeStyles = (level) => {
     switch (level) {

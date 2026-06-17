@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const defaultApiUrl = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000' 
+  : 'https://bus-tracking-server-s751.onrender.com';
+
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/api`,
+  baseURL: `${import.meta.env.VITE_API_URL || defaultApiUrl}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -24,7 +28,14 @@ api.interceptors.request.use(
 
 // Response interceptor to handle authorization expiration
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Check if the response is HTML (Vercel SPA rewrite fallback)
+    const contentType = response.headers['content-type'] || '';
+    if (contentType.includes('text/html')) {
+      return Promise.reject(new Error('Expected JSON response, but received HTML. Check VITE_API_URL config.'));
+    }
+    return response;
+  },
   (error) => {
     if (error.response && error.response.status === 401) {
       // Clear localStorage and redirect to login if unauthorized
